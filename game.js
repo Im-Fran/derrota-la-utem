@@ -271,6 +271,26 @@ function gameLoop() {
 
 const logo = new Image();
 logo.src = './logo.png';
+document.getElementById('uploadButton').addEventListener('click', function() {
+    document.getElementById('imageInput').click();
+    document.getElementById('uploadButton').blur()
+});
+
+document.getElementById('imageInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            if(e.target.result instanceof ArrayBuffer) {
+                const blob = new Blob([e.target.result]);
+                logo.src = URL.createObjectURL(blob);
+            } else {
+                logo.src = e.target.result;
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
 preloadSounds();
 gameLoop();

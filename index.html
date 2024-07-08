@@ -26,8 +26,12 @@
     <link rel="prefetch" href="./logo.png">
     <link rel="prefetch" href="./explosion.gif">
 </head>
-<body>
+<body style="display: flex; flex-direction: column; gap: 1rem;">
+    <input type="file" id="imageInput" style="display: none;" accept="image/*">
+    <button style="background-color: #5271FF; color: #fafafa; border-radius: 20px; border: none; padding: .2rem .5rem;" id="uploadButton">Cambiar Jefe</button>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <span style="font-size: 1.5rem;">Derrota al Logo de UTEM</span>
+    <span style="font-size: .8rem;">Usa las flechas para moverte. | Presiona espacio para disparar | Presiona K para usar el cohete</span>
     <script src="game.js"></script>
 </body>
 </html>
