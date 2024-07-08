@@ -169,8 +169,10 @@ function update() {
             if (player.health <= 0) {
                 gameOver = true;
                 playExplosionSound()
-                alert('¡Has sido derrotado por el logo de UTEM!');
-                window.location.reload();
+                setTimeout(() => {
+                    alert('¡Has sido derrotado por el logo de UTEM!');
+                    window.location.reload();
+                }, 500)
             }
         }
     });
