@@ -108,7 +108,7 @@ function update() {
             bullets.splice(index, 1);
         }
         if (bullet.x > logoObj.x && bullet.x < logoObj.x + logoObj.width && bullet.y < logoObj.y + logoObj.height) {
-            logoObj.health -= 0.25;
+            logoObj.health -= 1;
             bullets.splice(index, 1);
             if (logoObj.health <= 0) {
                 gameOver = true;
@@ -125,9 +125,9 @@ function update() {
             rockets.splice(index, 1);
         }
         if (rocket.x > logoObj.x && rocket.x < logoObj.x + logoObj.width && rocket.y < logoObj.y + logoObj.height) {
-            logoObj.health -= 2.5; // Rockets now deal 2.5 damage
+            logoObj.health -= 5;
             rockets.splice(index, 1);
-            explosionTimer = 30; // Show explosion for 30 frames
+            explosionTimer = 30;
             playExplosionSound()
             if (logoObj.health <= 0) {
                 gameOver = true;
@@ -160,7 +160,7 @@ function update() {
             enemyBullets.splice(index, 1);
         }
         if (bullet.x > player.x && bullet.x < player.x + player.width && bullet.y > player.y && bullet.y < player.y + player.height) {
-            player.health -= 0.5;
+            player.health -= 1.5;
             enemyBullets.splice(index, 1);
             if (player.health <= 0) {
                 gameOver = true;
