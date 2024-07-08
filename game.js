@@ -113,8 +113,10 @@ function update() {
             if (logoObj.health <= 0) {
                 gameOver = true;
                 playExplosionSound()
-                alert('¡Has derrotado al logo de UTEM!');
-                window.location.reload();
+                setTimeout(() => {
+                    alert('¡Has derrotado al logo de UTEM!');
+                    window.location.reload();
+                }, 500);
             }
         }
     });
@@ -131,8 +133,10 @@ function update() {
             playExplosionSound()
             if (logoObj.health <= 0) {
                 gameOver = true;
-                alert('¡Has derrotado al logo de UTEM!');
-                window.location.reload();
+                setTimeout(() => {
+                    alert('¡Has derrotado al logo de UTEM!');
+                    window.location.reload();
+                }, 500);
             }
         }
     });
