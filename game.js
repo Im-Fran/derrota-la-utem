@@ -29,7 +29,6 @@ let keys = {};
 let gameOver = false;
 let canShoot = true;
 let canBlast = true;
-let bulletsLeft = 10;
 let shootCooldown = 6000; // 6 seconds for special ability
 let lastShotTime = 0;
 let shootInterval = 250; // 250ms for normal shooting
@@ -55,6 +54,18 @@ function preloadSounds() {
     explosionSound.load();
 }
 
+function playShootSound() {
+    const shootSound = new Audio('./shoot.mp3');
+    shootSound.volume = 0.5; // Adjust volume as needed
+    shootSound.play().then();
+}
+
+function playExplosionSound() {
+    const explosionSound = new Audio('./explosion.mp3');
+    explosionSound.volume = 0.5; // Adjust volume as needed
+    explosionSound.play().then();
+}
+
 function update() {
     if (gameOver) return;
 
@@ -70,8 +81,7 @@ function update() {
             bullets.push(
                 { x: player.x + player.width / 2 - 2.5, y: player.y, width: 5, height: 10, speed: 7 }
             );
-            shootSound.currentTime = 0; // Reset sound to start
-            shootSound.play();
+            playShootSound()
             lastShotTime = now;
         }
     }
@@ -102,8 +112,7 @@ function update() {
             bullets.splice(index, 1);
             if (logoObj.health <= 0) {
                 gameOver = true;
-                explosionSound.currentTime = 0; // Reset sound to start
-                explosionSound.play();
+                playExplosionSound()
                 alert('¡Has derrotado al logo de UTEM!');
                 window.location.reload();
             }
@@ -119,8 +128,7 @@ function update() {
             logoObj.health -= 2.5; // Rockets now deal 2.5 damage
             rockets.splice(index, 1);
             explosionTimer = 30; // Show explosion for 30 frames
-            explosionSound.currentTime = 0; // Reset sound to start
-            explosionSound.play();
+            playExplosionSound()
             if (logoObj.health <= 0) {
                 gameOver = true;
                 alert('¡Has derrotado al logo de UTEM!');
@@ -156,8 +164,7 @@ function update() {
             enemyBullets.splice(index, 1);
             if (player.health <= 0) {
                 gameOver = true;
-                explosionSound.currentTime = 0; // Reset sound to start
-                explosionSound.play();
+                playExplosionSound()
                 alert('¡Has sido derrotado por el logo de UTEM!');
                 window.location.reload();
             }
@@ -258,11 +265,6 @@ function gameLoop() {
 
 const logo = new Image();
 logo.src = './logo.png';
-logo.onload = function () {
-    spaceship.onload = function () {
-        rocketSprite.onload = function () {
-            preloadSounds();
-            gameLoop();
-        }
-    }
-};
+
+preloadSounds();
+gameLoop();
